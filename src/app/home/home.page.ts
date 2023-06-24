@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,18 +9,23 @@ import { Component } from '@angular/core';
 export class HomePage {
   constructor() {}
 
+  @ViewChild(IonModal)
+  modal!: IonModal;
+
   onClickUpdate() {
-    console.log('onClickUpdate');
+    this.modal.dismiss(null, 'onclickupdate');
   }
+
   onClickView() {
-    console.log('onClickView');
+    this.modal.dismiss(null, 'onclickview');
   }
+
   onClickDelete() {
-    console.log('onClickDelete');
+    this.modal.dismiss(null, 'onclickdelete');
   }
 
-  onclickAdd(){
-    console.log('onClickAdd');
-
+  onclickAdd() {
+    this.modal.dismiss(null, 'onclickAdd');
   }
+
 }
