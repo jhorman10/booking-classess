@@ -9,5 +9,30 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-
+  <ion-list>
+    <ion-list-header lines="inset">
+      <ion-label>Class List</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Class name</ion-label>
+      <ion-button color="warning" (click)="onClickUpdate()">
+        <ion-icon slot="icon-only" name="refresh-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="secondary" (click)="onClickView()">
+        <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="danger" (click)="onClickDelete()">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
+<ion-button
+  shape="round"
+  color="success"
+  size="large"
+  expand="block"
+  (click)="onclickAdd()"
+>
+  <ion-icon slot="icon-only" name="add"></ion-icon>
+</ion-button>

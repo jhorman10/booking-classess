@@ -6,7 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
   constructor() {}
 
+  onClickUpdate() {
+    console.log('onClickUpdate');
+  }
+  onClickView() {
+    console.log('onClickView');
+  }
+  onClickDelete() {
+    console.log('onClickDelete');
+  }
+
+  onclickAdd(){
+    console.log('onClickAdd');
+
+  }
 }
