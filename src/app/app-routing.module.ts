@@ -7,13 +7,13 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'register-class',
+    loadChildren: () => import('./register-class/register-class.module').then( m => m.RegisterClassPageModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
-  {
-    path: 'register-class',
-    loadChildren: () => import('./register-class/register-class.module').then( m => m.RegisterClassPageModule)
   },
 ];
 

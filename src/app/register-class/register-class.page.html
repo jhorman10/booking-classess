@@ -1,13 +1,46 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>register-class</ion-title>
+    <ion-title>Add Class</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">register-class</ion-title>
+      <ion-title size="large">Add Class</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-card >
+    <ion-card-header>
+      <ion-card-title>Class Title</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-input type="text" placeholder="Class name"></ion-input>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-card-subtitle>From: </ion-card-subtitle>
+      <ion-datetime-button datetime="dateTimeTo"></ion-datetime-button>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="dateTimeTo"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-card-content>
+
+    <ion-card-content>
+      <ion-card-subtitle>To:</ion-card-subtitle>
+      <ion-datetime-button datetime="dateTimeFrom"></ion-datetime-button>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="dateTimeFrom"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="onClick()" expand="block" shape="round" color="success">
+    Add class
+  </ion-button>
 </ion-content>
