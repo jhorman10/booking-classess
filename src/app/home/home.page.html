@@ -1,75 +1,92 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Booking Class App </ion-title>
+    <ion-title> {{titleForPage}} </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-header collapse="condense">
   <ion-toolbar>
-    <ion-title size="large"> Booking Class App </ion-title>
+    <ion-title size="large"> {{titleForPage}} </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-list>
-    <ion-list-header lines="inset">
-      <ion-label>Class List</ion-label>
+    <ion-list-header lines="inset" mode="ios">
+      <ion-label>{{subTitleForPage}}</ion-label>
     </ion-list-header>
-    <ion-item>
-      <ion-label>Class name 1</ion-label>
+    <ion-item *ngFor="let class of listOfClasses, index as i">
+      <ion-label>{{i+1}}: {{class}}</ion-label>
       <ion-button
-        id="open-modal-update"
+        [id]="'open-modal-update-'+i"
         color="warning"
-        (click)="onClickUpdate()"
+        (click)="onClickUpdate(i)"
       >
         <ion-icon slot="icon-only" name="refresh-circle-outline"></ion-icon>
       </ion-button>
       <ion-button
-        id="open-modal-view"
+        [id]="'open-modal-view-'+i"
         color="secondary"
-        (click)="onClickView()"
+        (click)="onClickView(i)"
       >
         <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
       </ion-button>
-      <ion-button color="danger" (click)="onClickDelete()">
+      <ion-button [id]="'cancel'+i" color="danger" (click)="onClickDelete()">
         <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
       </ion-button>
+      <ion-modal [trigger]="'open-modal-update-'+i" (willDismiss)="onWillDismiss($event)">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>{{lblForModalUpdate}}</ion-title>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <app-register-class
+              (updateClass)="updateModal($event)"
+              (cancel)="cancelModal($event)"
+              [modal]="update"
+              [title]="lblForModalUpdate"
+              [btnColor]="warning"
+            ></app-register-class>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+      <ion-modal [trigger]="'open-modal-view-'+i">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>{{lblForModalView}}</ion-title>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <app-register-class
+              (viewClass)="viewModal($event)"
+              (cancel)="cancelModal($event)"
+              [modal]="view"
+              [title]="lblForModalView"
+              [btnColor]="secondary"
+            ></app-register-class>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
     </ion-item>
   </ion-list>
-
-  <ion-modal trigger="open-modal-update">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Update Class</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <app-register-class></app-register-class>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-
-  <ion-modal trigger="open-modal-view">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Current Class</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <app-register-class></app-register-class>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
 
   <ion-modal trigger="open-modal-add">
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Add Class</ion-title>
+          <ion-title>{{lblForModalAdd}}</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <app-register-class></app-register-class>
+        <app-register-class
+          (addClass)="addModal($event)"
+          (cancel)="cancelModal($event)"
+          [modal]="add"
+          [title]="lblForModalAdd"
+          [btnColor]="success"
+        ></app-register-class>
       </ion-content>
     </ng-template>
   </ion-modal>
